@@ -51,21 +51,21 @@
 
     - name: Deploy ehosd config file
       template:
-        src: {{ehosd_config_file}}
+        src: "{{ehosd_config_file}}"
         dest: /usr/local/etc/ehos.yaml
         owner: "{{ehos_user}}"
         group: "{{ehos_user}}"
 
     - name: Deploy ehos execute image config file
       template:
-        src: {{ehos_execute_config_file}}
+        src: "{{ehos_execute_config_file}}"
         dest: /usr/local/etc/ehos_execute.yaml
         owner: "{{ehos_user}}"
         group: "{{ehos_user}}"
 
     - name: Deploy ehos systemd file
       template:
-        src: {{ehosd_systemd}}
+        src: "{{ehosd_systemd}}"
         dest: /etc/systemd/system/ehos.service
 #        daemon_reload: yes
 
@@ -88,7 +88,7 @@
 
     - name: Copy htcondor personal-config
       template:
-        src: {{ehos_condor_master}}
+        src: "{{ehos_condor_master}}"
         dest: /etc/condor/config.d/99ehos.config
       register: condor_config
 
