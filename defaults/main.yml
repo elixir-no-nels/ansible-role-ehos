@@ -1,0 +1,26 @@
+---
+# defaults file for ansible-role-ehos
+ehos_user: ehos
+ehos_min_cores: 1
+ehos_min_instances: 0
+ehos_min_ram: 4
+ehos_nodes_max: 6
+ehos_nodes_min: 2
+ehos_nodes_spare: 2
+ehos_sleep: 30
+
+openstack_flavor: m1.medium
+openstack_image: GOLD CentOS 7
+
+openstack_network: dualStack
+ehos_project_prefix: ehos_v1
+# either a specified version, or development for using the head of the git repo
+ehos_version: development
+
+condor_password: ChangeME
+condor_uid_domain: my.domain
+
+ehosd_config_file: templates/ehos.yaml.j2
+ehos_execute_config_file: templates/execute.yaml.j2
+ehosd_systemd: templates/ehos.service.j2
+ehos_condor_master: templates/condor_master.j2
