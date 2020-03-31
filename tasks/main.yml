@@ -142,3 +142,7 @@
       become_user: "{{ehos_user}}"
       when: ehos_config.changed
 
+    - name: Make sure ehos is running
+      systemd:
+        state: started
+        name: ehos
