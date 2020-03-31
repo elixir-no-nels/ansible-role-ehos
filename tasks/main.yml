@@ -37,7 +37,7 @@
       file:
         dest: /usr/local/etc
         group: adm
-        mode: 775
+        mode: 0775
 
 
     - name: install EHOS latest
@@ -127,7 +127,7 @@
     - name: set condor password
       command: "{{item}}"
       with_items:
-        - sleep 5
+        - sleep 15
         - /usr/sbin/condor_store_cred -p {{condor_password}} -f {{condor_passwd_file}}
         - /usr/sbin/condor_reconfig
 
@@ -140,5 +140,5 @@
       command: /usr/local/bin/ehos_cloud_setup.py --ssh-key ~{{ehos_user}}/.ssh/id_rsa.pub --create-images -B /usr/local/etc/ehos_execute.yaml /usr/local/etc/ehos.yaml
       become: yes
       become_user: "{{ehos_user}}"
-#      when: ehos_config.changed
+      when: ehos_config.changed
 
