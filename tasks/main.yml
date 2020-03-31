@@ -34,7 +34,7 @@
         recurse: yes
 
     - name: install EHOS latest
-      command: pip3 install --prefix=/usr/local/ git+https://github.com/elixir-no-nels/ehos-python.git
+      command: pip3 install --upgrade --prefix=/usr/local/ git+https://github.com/elixir-no-nels/ehos-python.git
       when: ehos_version == 'development'
 
     - name: install EHOS latest
@@ -49,10 +49,18 @@
         group: "{{ehos_user}}"
         mode: 0775
 
-    - name: Deploy ehosd config file
+    - name: Deploy ehosd config file, will keep local copy if exists!
       template:
         src: "{{ehosd_config_file}}"
         dest: /usr/local/etc/ehos.yaml
+        owner: "{{ehos_user}}"
+        group: "{{ehos_user}}"
+        force: no
+
+    - name: Deploy ehosd behaviour config file
+      template:
+        src: "{{ehosd_daemon_file}}"
+        dest: /usr/local/etc/ehos_daemon.yaml
         owner: "{{ehos_user}}"
         group: "{{ehos_user}}"
 
