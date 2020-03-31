@@ -139,6 +139,6 @@
     - name: create cloud image and configure cloud settings
       command: /usr/local/bin/ehos_cloud_setup.py --ssh-key ~{{ehos_user}}/.ssh/id_rsa.pub --create-images -B /usr/local/etc/ehos_execute.yaml /usr/local/etc/ehos.yaml
       become: yes
-      become_user: "{{ehos_user}}
+      become_user: "{{ehos_user}}"
 #      when: ehos_config.changed
 
