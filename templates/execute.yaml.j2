@@ -99,4 +99,5 @@ runcmd:
   - systemctl start condor
   - sleep 15
   - /sbin/condor_store_cred -p {{condor_password}} -f {{condor_passwd_file}}
+  - chown condor.condor {{condor_passwd_file}}
   - /sbin/condor_reconfig
