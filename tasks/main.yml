@@ -127,7 +127,7 @@
         name: condor
 
     - name: set condor password
-      becone: true
+      become: true
       command: "{{item}}"
       with_items:
         - sleep 15
