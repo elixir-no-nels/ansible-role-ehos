@@ -113,8 +113,8 @@
       template:
         src: "{{ehos_condor_master}}"
         dest: /etc/condor/config.d/99ehos.config
-	owner: condor
-	group: condor
+        owner: condor
+        group: condor
       register: condor_config
 
     - name: restart htcondor
