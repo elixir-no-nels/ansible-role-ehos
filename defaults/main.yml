@@ -20,6 +20,7 @@ ehos_version: development
 condor_password: ChangeME
 condor_uid_domain: my.domain
 condor_passwd_file: /etc/condor/pool_password
+ehos_ssh_keyname: ehos_ssh
 
 ehosd_config_file: templates/ehos.yaml.j2
 ehos_execute_config_file: templates/execute.yaml.j2

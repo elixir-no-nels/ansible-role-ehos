@@ -113,6 +113,8 @@
       template:
         src: "{{ehos_condor_master}}"
         dest: /etc/condor/config.d/99ehos.config
+	owner: condor
+	group: condor
       register: condor_config
 
     - name: restart htcondor
@@ -125,6 +127,7 @@
         name: condor
 
     - name: set condor password
+      becone: true
       command: "{{item}}"
       with_items:
         - sleep 15
@@ -137,7 +140,7 @@
       register: ehos_config
 
     - name: create cloud image and configure cloud settings
-      command: /usr/local/bin/ehos_cloud_setup.py --ssh-key ~{{ehos_user}}/.ssh/id_rsa.pub --create-images -B /usr/local/etc/ehos_execute.yaml /usr/local/etc/ehos.yaml
+      command: /usr/local/bin/ehos_cloud_setup.py --ssh-key-name {{ehos_ssh_keyname}} --ssh-key ~{{ehos_user}}/.ssh/id_rsa.pub --create-images -B /usr/local/etc/ehos_execute.yaml /usr/local/etc/ehos.yaml
       become: yes
       become_user: "{{ehos_user}}"
       when: ehos_config.changed
