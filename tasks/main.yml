@@ -109,13 +109,27 @@
     - name: install condor
       yum: name=condor
 
-    - name: Copy htcondor personal-config
+    - name: Copy htcondor master-config
       template:
         src: "{{ehos_condor_master}}"
         dest: /etc/condor/config.d/99ehos.config
         owner: condor
         group: condor
       register: condor_config
+
+    - name: create condor password directory
+      become: true
+      file:
+        src: /etc/condor/passwords.d/
+        state: directory
+        owner: root
+        group: root
+        mode: 0700
+
+
+    - name: set condor password
+      become: true
+      command: condor_store_cred add -cp {{condor_password}}
 
     - name: restart htcondor
       service: name=condor state=restarted
@@ -126,13 +140,6 @@
         state: started
         name: condor
 
-    - name: set condor password
-      become: true
-      command: "{{item}}"
-      with_items:
-        - sleep 15
-        - /usr/sbin/condor_store_cred -p {{condor_password}} -f {{condor_passwd_file}}
-        - /usr/sbin/condor_reconfig
 
     - name: ehos config file status
       stat:
