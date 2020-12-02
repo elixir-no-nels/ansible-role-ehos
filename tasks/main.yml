@@ -44,7 +44,7 @@
       command: pip3 install --upgrade --prefix=/usr/local/ git+https://github.com/elixir-no-nels/ehos-python.git
       when: ehos_version == 'development'
 
-    - name: install EHOS latest
+    - name: install EHOS
       command: pip3 install --prefix=/usr/local/ https://github.com/elixir-no-nels/ehos-python/archive/v{{ehos_version}}.tar.gz
       when: ehos_version != 'development'
 
@@ -120,7 +120,7 @@
     - name: create condor password directory
       become: true
       file:
-        src: /etc/condor/passwords.d/
+        path: /etc/condor/passwords.d/
         state: directory
         owner: root
         group: root
@@ -129,7 +129,7 @@
 
     - name: set condor password
       become: true
-      command: condor_store_cred add -cp {{condor_password}}
+      command: condor_store_cred add -c -p {{condor_password}}
 
     - name: restart htcondor
       service: name=condor state=restarted
