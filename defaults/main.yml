@@ -27,3 +27,4 @@ ehos_execute_config_file: templates/execute.yaml.j2
 ehosd_systemd: templates/ehos.service.j2
 ehos_condor_master: templates/condor_master.j2
 ehosd_daemon_file: templates/ehos_daemon.yaml.j2
+condor_uid_domain: ehos_cluster

@@ -20,3 +20,7 @@ ALLOW_NEGOTIATOR = condor_pool@*/{{inventory_hostname}}
 use ROLE: CentralManager, Submit
 ALLOW_WRITE_COLLECTOR=$(ALLOW_WRITE) *
 NEGOTIATOR_INTERVAL = 5
+UID_DOMAIN = {{condor_uid_domain|default(ehos_cluster)}}
+STARTER_ALLOW_RUNAS_OWNER = True
+TRUST_UID_DOMAIN = true
+
