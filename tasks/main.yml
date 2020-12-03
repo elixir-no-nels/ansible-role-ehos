@@ -144,13 +144,12 @@
     - name: ehos config file status
       stat:
         path: /usr/local/etc/ehos.yaml
-      register: ehos_config
 
     - name: create cloud image and configure cloud settings
       command: /usr/local/bin/ehos_cloud_setup.py --ssh-key-name {{ehos_ssh_keyname}} --ssh-key ~{{ehos_user}}/.ssh/id_rsa.pub --create-images -B /usr/local/etc/ehos_execute.yaml /usr/local/etc/ehos.yaml
       become: yes
       become_user: "{{ehos_user}}"
-      when: ehos_config.changed
+
 
     - name: Make sure ehos is running
       systemd:
