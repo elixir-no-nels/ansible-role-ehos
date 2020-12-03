@@ -47,7 +47,7 @@ runcmd:
   - yum -y install condor
   - mkdir /etc/condor/passwords.d
   - chown 700 /etc/condor/passwords.d
-  - condor_store_cred add -cp {{condor_password}}
+  - condor_store_cred add -c -p {{condor_password}}
 
   - systemctl enable condor
   - systemctl start condor

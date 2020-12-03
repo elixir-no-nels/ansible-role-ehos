@@ -15,7 +15,7 @@ condor:
 ehos:
     flavor: {{openstack_flavor}}
     image: {{openstack_image | default('GOLD CentOS 7') }}
-    key: ehos_key
+    key: {{ehos_ssh_keyname}}
     network: {{openstack_network}}
     project_prefix: {{ehos_project_prefix | default('ehos_v1') }}
     security_groups: ehos_firewall

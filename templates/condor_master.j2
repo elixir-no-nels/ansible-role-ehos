@@ -14,7 +14,7 @@ SEC_NEGOTIATOR_INTEGRITY = REQUIRED
 SEC_NEGOTIATOR_AUTHENTICATION_METHODS = PASSWORD
 SEC_CLIENT_AUTHENTICATION_METHODS = FS, PASSWORD, KERBEROS, GSI
 ALLOW_DAEMON = condor_pool@*/*, condor@*/$(IP_ADDRESS)
-ALLOW_NEGOTIATOR = condor_pool@*/ehos.usegalaxy.no
+ALLOW_NEGOTIATOR = condor_pool@*/{{inventory_hostname}}
 
 # master + submit role
 use ROLE: CentralManager, Submit
